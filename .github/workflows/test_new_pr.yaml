@@ -14,7 +14,6 @@ jobs:
       - name: Generate page
         run: |
           pwd
-          ls
-          ls ..
-          sudo hexo clean
-          sudo hexo generate
+          ls -la
+          # sudo hexo clean
+          # sudo hexo generate
