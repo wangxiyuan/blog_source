@@ -13,5 +13,6 @@ jobs:
           sudo npm install -g hexo-cli
       - name: Generate page
         run: |
+          pwd
           sudo hexo clean
           sudo hexo generate
