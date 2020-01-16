@@ -11,5 +11,7 @@ jobs:
         uses: actions/setup-node@v1
       - name: Install hexo
         run: npm install -g hexo-cli
+      - name: test
+        run: pwd
       - name: Generate page
         run: hexo clean && hexo generate
