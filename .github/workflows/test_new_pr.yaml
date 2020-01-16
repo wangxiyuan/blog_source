@@ -7,7 +7,9 @@ jobs:
     name: Try generate the new page to make sure the PR works
     runs-on: ubuntu-latest
     steps:
-      - name: Install requirements
+      - name: Install node
         uses: actions/setup-node@v1
+      - name: Install hexo
+        run: npm install -g hexo-cli
       - name: Generate page
         run: hexo clean && hexo generate
