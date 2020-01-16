@@ -1,0 +1,13 @@
+name: Test the new PR
+
+on: [pull_request]
+
+jobs:
+  test_pr:
+    name: Try generate the new page to make sure the PR works
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install requirements
+        uses: actions/setup-node@v1
+      - name: Generate page
+        run: hexo clean && hexo generate
