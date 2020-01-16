@@ -15,5 +15,8 @@ jobs:
         run: |
           pwd
           ls -la
+          cd ../
+          pwd
+          ls -la
           # sudo hexo clean
           # sudo hexo generate
