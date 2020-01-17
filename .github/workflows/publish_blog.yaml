@@ -39,4 +39,6 @@ jobs:
           sudo git config --global user.name "wangxiyuan"
           sudo git config --global user.email "wangxiyuan1007@gmail.com"
           sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
+          pwd
+          ls -la
           sudo hexo deploy
