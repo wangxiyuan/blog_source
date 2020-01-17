@@ -31,14 +31,15 @@ jobs:
           sudo cp theme_config.yml my_blog/themes/next/_config.yml
       - name: Generate page
         run: |
-          cd my_blog
+          pushd my_blog
           sudo hexo clean
           sudo hexo generate
+          popd
       - name: Publish
         run: |
+          pushd my_blog
           sudo git config --global user.name "wangxiyuan"
           sudo git config --global user.email "wangxiyuan1007@gmail.com"
           sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
-          pwd
-          ls -la
           sudo hexo deploy
+          popd
