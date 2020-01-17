@@ -13,7 +13,6 @@ jobs:
         run: |
           sudo apt install -y nodejs npm
           sudo npm install -g hexo-cli
-          sudo npm install --save hexo-deployer-git
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Prepare hexo
@@ -38,6 +37,7 @@ jobs:
       - name: Publish
         run: |
           pushd my_blog
+          sudo npm install --save hexo-deployer-git
           sudo git config --global user.name "wangxiyuan"
           sudo git config --global user.email "wangxiyuan1007@gmail.com"
           sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
