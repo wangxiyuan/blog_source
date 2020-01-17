@@ -25,6 +25,7 @@ jobs:
           popd
       - name: Copy my source
         run: |
+          sudo rm -rf my_blog/source/
           sudo cp -r source/ my_blog/
           sudo cp _config.yml my_blog/_config.yml
           sudo cp theme_config.yml my_blog/themes/next/_config.yml
