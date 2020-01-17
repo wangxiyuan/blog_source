@@ -13,16 +13,19 @@ jobs:
           sudo npm install -g hexo-cli
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: debug
         run: |
           pwd
           ls -la
+          cat README.md
       - name: Prepar hexo
         run: |
-          mkdir my_blog
+          sudo mkdir my_blog
           cd my_blog
           sudo hexo init
-          mkdir themes/next
+          sudo mkdir themes/next
           sudo curl -s https://api.github.com/repos/theme-next/hexo-theme-next/releases/latest | grep tarball_url | cut -d '"' -f 4 | wget -i - -O- | tar -zx -C themes/next --strip-components=1
       - name: Copy my source
         run: |
