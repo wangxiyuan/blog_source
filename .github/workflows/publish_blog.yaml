@@ -36,7 +36,7 @@ jobs:
           sudo hexo generate
       - name: Publish
         run: |
-          git config --global user.name "wangxiyuan"
-          git config --global user.email "wangxiyuan1007@gmail.com"
-          sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
+          sudo git config --global user.name "wangxiyuan"
+          sudo git config --global user.email "wangxiyuan1007@gmail.com"
+          sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
           sudo hexo deploy
