@@ -1,4 +1,4 @@
-name: Test PR
+name: Build Blog
 
 on: [pull_request]
 
