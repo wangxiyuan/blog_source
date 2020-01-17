@@ -11,12 +11,24 @@ jobs:
         run: |
           sudo apt install -y nodejs npm
           sudo npm install -g hexo-cli
-      - name: Generate page
+      - name: debug
         run: |
           pwd
           ls -la
-          cd ../
-          pwd
-          ls -la
-          # sudo hexo clean
-          # sudo hexo generate
+      - name: Prepar hexo
+        run: |
+          mkdir my_blog
+          cd my_blog
+          hexo init
+          mkdir themes/next
+          curl -s https://api.github.com/repos/theme-next/hexo-theme-next/releases/latest | grep tarball_url | cut -d '"' -f 4 | wget -i - -O- | tar -zx -C themes/next --strip-components=1
+      - name: Copy my source
+        run: |
+          cp -r source/ my_blog/
+          cp _config.yml my_blog/_config.yml
+          cp theme_config.yml my_blog/theme/next/_config.yml
+      - name: Generate page
+        run: |
+          cd my_blog
+          hexo clean
+          hexo generate
