@@ -1,0 +1,42 @@
+name: Publish blog
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish:
+    name: Generate page
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install requirements
+        run: |
+          sudo apt install -y nodejs npm
+          sudo npm install -g hexo-cli
+          sudo npm install --save hexo-deployer-git
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Prepare hexo
+        run: |
+          sudo mkdir my_blog
+          pushd my_blog
+          sudo hexo init
+          sudo mkdir themes/next
+          sudo curl -L https://api.github.com/repos/theme-next/hexo-theme-next/tarball/v6.0.0 | sudo tar -zxv -C themes/next --strip-components=1
+          popd
+      - name: Copy my source
+        run: |
+          sudo cp -r source/ my_blog/
+          sudo cp _config.yml my_blog/_config.yml
+          sudo cp theme_config.yml my_blog/themes/next/_config.yml
+      - name: Generate page
+        run: |
+          cd my_blog
+          sudo hexo clean
+          sudo hexo generate
+      - name: Publish
+        run: |
+          git config --global user.name "wangxiyuan"
+          git config --global user.email "wangxiyuan1007@gmail.com"
+          sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
+          sudo hexo deploy
