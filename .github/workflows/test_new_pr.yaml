@@ -3,7 +3,7 @@ name: Test PR
 on: [pull_request]
 
 jobs:
-  test_pr:
+  build:
     name: Generate page
     runs-on: ubuntu-latest
     steps:
@@ -15,18 +15,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: debug
-        run: |
-          pwd
-          ls -la
-          cat README.md
       - name: Prepar hexo
         run: |
           sudo mkdir my_blog
           cd my_blog
           sudo hexo init
           sudo mkdir themes/next
-          sudo curl -s https://api.github.com/repos/theme-next/hexo-theme-next/releases/latest | grep tarball_url | cut -d '"' -f 4 | wget -i - -O- | tar -zx -C themes/next --strip-components=1
+          sudo curl -s https://api.github.com/repos/theme-next/hexo-theme-next/releases/latest | grep tarball_url | cut -d '"' -f 4 | wget -i - -O- | sudo tar -zx -C themes/next --strip-components=1
       - name: Copy my source
         run: |
           sudo cp -r source/ my_blog/
