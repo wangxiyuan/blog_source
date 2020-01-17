@@ -11,6 +11,8 @@ jobs:
         run: |
           sudo apt install -y nodejs npm
           sudo npm install -g hexo-cli
+      - name: Checkout repo
+        uses: actions/checkout@v2
       - name: debug
         run: |
           pwd
