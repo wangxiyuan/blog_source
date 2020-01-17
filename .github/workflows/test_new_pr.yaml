@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo cp -r source/ my_blog/
           sudo cp _config.yml my_blog/_config.yml
-          sudo cp theme_config.yml my_blog/theme/next/_config.yml
+          sudo cp theme_config.yml my_blog/themes/next/_config.yml
       - name: Generate page
         run: |
           cd my_blog
