@@ -29,6 +29,10 @@ jobs:
           sudo cp -r source/ my_blog/
           sudo cp _config.yml my_blog/_config.yml
           sudo cp theme_config.yml my_blog/themes/next/_config.yml
+      - name: Update config
+        run: |
+          sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
+          sudo sed -i 's/  client_secret: ReplaceMe/  client_secret: ${{ secrets.gitalk_secret }}/' themes/next/_config.yml
       - name: Generate page
         run: |
           pushd my_blog
@@ -41,7 +45,5 @@ jobs:
           sudo npm install --save hexo-deployer-git
           sudo git config --global user.name "wangxiyuan"
           sudo git config --global user.email "wangxiyuan1007@gmail.com"
-          sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
-          sudo sed -i 's/  client_secret: ReplaceMe/  client_secret: ${{ secrets.gitalk_secret }}/' themes/next/_config.yml
           sudo hexo deploy
           popd
