@@ -43,6 +43,5 @@ jobs:
           sudo git config --global user.email "wangxiyuan1007@gmail.com"
           sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
           sudo sed -i 's/  client_secret: ReplaceMe/  client_secret: ${{ secrets.gitalk_secret }}/' themes/next/_config.yml
-          sudo cat themes/next/_config.yml
           sudo hexo deploy
           popd
