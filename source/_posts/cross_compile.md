@@ -83,7 +83,7 @@ To Be Done。
 
 
 
-`--host`为什么是`aarch64-linux-gnu`，而不是其他的值，比如``aarch64`？其实`aarch64-linux-gnu`是指将要调用的gcc命令的前缀。真正编译时make调用的底层gcc命令全称就是`aarch64-linux-gnu-gcc`。在上述机器中，其实可以发现有一组以` x86_64-linux-gnu `开头的命令，这就是默认非交叉编译场景下实际调用的命令，与`--host=x86_64-linux-gnu`相对应。
+`--host`为什么是`aarch64-linux-gnu`，而不是其他的值，比如`aarch64`？其实`aarch64-linux-gnu`是指将要调用的gcc命令的前缀。真正编译时make调用的底层gcc命令全称就是`aarch64-linux-gnu-gcc`。在上述机器中，其实可以发现有一组以`x86_64-linux-gnu`开头的命令，这就是默认非交叉编译场景下实际调用的命令，与`--host=x86_64-linux-gnu`相对应。
 
 ## 3.2 Cmake
 
