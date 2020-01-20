@@ -21,7 +21,7 @@ jobs:
           pushd my_blog
           sudo hexo init
           sudo mkdir themes/next
-          sudo curl -L https://api.github.com/repos/theme-next/hexo-theme-next/tarball/v7.4.0 | sudo tar -zxv -C themes/next --strip-components=1
+          sudo curl -L https://api.github.com/repos/theme-next/hexo-theme-next/tarball/v7.5.0 | sudo tar -zxv -C themes/next --strip-components=1
           popd
       - name: Copy my source
         run: |
