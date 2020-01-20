@@ -31,8 +31,10 @@ jobs:
           sudo cp theme_config.yml my_blog/themes/next/_config.yml
       - name: Update config
         run: |
+          pushd my_blog
           sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
           sudo sed -i 's/  client_secret: ReplaceMe/  client_secret: ${{ secrets.gitalk_secret }}/' themes/next/_config.yml
+          popd
       - name: Generate page
         run: |
           pushd my_blog
