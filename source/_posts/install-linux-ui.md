@@ -14,6 +14,7 @@ categories: Linux
     apt install vnc4server
     apt install xfce4
     ```
+<!-- more -->
 2. 修改文件`~/.vnc/xstartup`
 
     ```
@@ -62,10 +63,13 @@ categories: Linux
     $ vncserver -depth 16 -geometry 1920x1080  (根据自己的屏幕大小修改分辨率)
     ```
 
-5. 查看vnc对应的port，防火墙打开该port，就可以远程VNC登录了。
+5. 查看vnc对应的port，防火墙打开该port。
 
     ```
     $ netstat -nltp|grep vnc
     ```
 
     vnc4server一般安装5901、5902、5903...的顺序起port，因此第一个vnc服务的port一般是5901。
+    
+6. 使用vnc client登录
+    VNC client五花八门，选择一个适合自己的就行。本人这里由于公司限制，只能使用专门的VNC软件，就不详细介绍了。登录信息一般包括：IP， port，Password（记得第一启动vnc4server时输入的密码吗，就是那个）。
