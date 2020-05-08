@@ -7,14 +7,29 @@ categories: Linux
 
 ---
 
-# 步骤
+# 方法一
+
+一键部署，直接安装官方的ubuntu-desktop
+
+```
+apt install ubuntu-desktop
+```
+<!-- more -->
+安装成功后，重启机器，再打开VNC功能即可。
+
+如何打开VNC： https://websiteforstudents.com/access-ubuntu-18-04-lts-beta-desktop-via-vnc-from-windows-machines/
+
+# 方法二
+
+适用于各种原因走不通方法一的悲剧用户，或者想使用轻量级UI的用户。
+
 1. 安装VNC和UI软件
 
     ```
     apt install vnc4server
     apt install xfce4
     ```
-<!-- more -->
+
 2. 修改文件`~/.vnc/xstartup`
 
     ```
