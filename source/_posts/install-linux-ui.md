@@ -7,9 +7,14 @@ categories: Linux
 
 ---
 
+# 总体思路
+
+1. 安装UI软件
+2. 使用VNC方式远程访问UI
+
 # 方法一
 
-一键部署，直接安装官方的ubuntu-desktop
+一键部署，直接安装官方的ubuntu-desktop。ubuntu-desktop集成了UI+VNC。
 
 ```
 apt install ubuntu-desktop
@@ -17,7 +22,20 @@ apt install ubuntu-desktop
 <!-- more -->
 安装成功后，重启机器，再打开VNC功能即可。
 
-如何打开VNC： https://websiteforstudents.com/access-ubuntu-18-04-lts-beta-desktop-via-vnc-from-windows-machines/
+如何打开VNC：
+
+1. 使用ubuntu-desktop自带的vino-server: https://websiteforstudents.com/access-ubuntu-18-04-lts-beta-desktop-via-vnc-from-windows-machines/
+2. 自行安装VNC软件，我这里推荐x11vnc。
+
+    ```
+    # 安装x11vnc
+    apt install x11vnc
+    # 设置登录密码xxx，存放在文件/opt/passwd中
+    x11vnc -storepasswd xxx /opt/passwd
+    # 启动vnc
+    x11vnc -auth /run/user/1000/gdm/Xauthority -rfbauth /opt/passwd -display :1 -forever -loop
+    ```
+    如果想后台运行x11vnc，自行创建一个systemd的service即可。
 
 # 方法二
 
